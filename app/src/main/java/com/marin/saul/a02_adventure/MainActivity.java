@@ -3,6 +3,8 @@ package com.marin.saul.a02_adventure;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -172,10 +174,11 @@ public class MainActivity extends AppCompatActivity {
             roomText = roomText + "No hay nada en la sala...";
         }else {
             for (Item item : roomItems) {
-                roomText = roomText + item.getName() + "\n";
+                roomText = roomText + "<i>" + item.getName() + "</i><br>";
             }
         }
+        Spanned sp = Html.fromHtml(roomText.toString());
+        roomDescription.setText(sp);
 
-        roomDescription.setText(roomText);
     }
 }
