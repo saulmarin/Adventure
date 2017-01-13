@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
         takeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InventoryManager.take(currentRoom,inventory,"Mapa");
+                Intent i = new Intent(MainActivity.this, TakeActivity.class);
+                startActivity(i);
             }
         });
         dropButton.setOnClickListener(new View.OnClickListener() {
@@ -167,8 +168,12 @@ public class MainActivity extends AppCompatActivity {
         roomText = roomText + currentRoom.getDescription() + "\n";
 
         LinkedList<Item> roomItems = currentRoom.getItems();
-        for (Item item: roomItems){
-            roomText = roomText + item.getName()+ "\n";
+        if ( roomItems == null){
+            roomText = roomText + "No hay nada en la sala...";
+        }else {
+            for (Item item : roomItems) {
+                roomText = roomText + item.getName() + "\n";
+            }
         }
 
         roomDescription.setText(roomText);
