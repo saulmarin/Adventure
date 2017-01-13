@@ -16,37 +16,29 @@ import com.marin.saul.a02_adventure.model.Room;
 
 import java.util.LinkedList;
 
-public class MainActivity extends AppCompatActivity {
-    ImageButton helpButton;
-    TextView roomDescription;
-    ImageView roomImage;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    ImageButton moveNorth;
-    ImageButton moveEast;
-    ImageButton moveWest;
-    ImageButton moveSouth;
-    ImageButton lookButton;
-    ImageButton takeButton;
-    ImageButton dropButton;
-    ImageButton inventoryButton;
+public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.activity_main_button_north) ImageButton moveNorth;
+    @BindView(R.id.activity_main_button_east) ImageButton moveEast;
+    @BindView(R.id.activity_main_button_west) ImageButton moveWest;
+    @BindView(R.id.activity_main_button_south) ImageButton moveSouth;
+    @BindView(R.id.activity_main_button_look) ImageButton lookButton;
+    @BindView(R.id.activity_main_button_take) ImageButton takeButton;
+    @BindView(R.id.activity_main_button_drop) ImageButton dropButton;
+    @BindView(R.id.activity_main_button_inventory) ImageButton inventoryButton;
+    @BindView(R.id.activity_main_button_help) ImageButton helpButton;
+    @BindView(R.id.activity_main_scene_text) TextView roomDescription;
+    @BindView(R.id.activity_main_scene_image) ImageView roomImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        moveNorth = (ImageButton) findViewById(R.id.activity_main_button_north);
-        moveEast = (ImageButton) findViewById(R.id.activity_main_button_east);
-        moveWest = (ImageButton) findViewById(R.id.activity_main_button_west);
-        moveSouth = (ImageButton) findViewById(R.id.activity_main_button_south);
-        lookButton = (ImageButton) findViewById(R.id.activity_main_button_look);
-        takeButton = (ImageButton) findViewById(R.id.activity_main_button_take);
-        dropButton = (ImageButton) findViewById(R.id.activity_main_button_drop);
-        inventoryButton = (ImageButton) findViewById(R.id.activity_main_button_inventory);
-        helpButton = (ImageButton) findViewById(R.id.activity_main_button_help);
-        roomDescription = (TextView) findViewById(R.id.activity_main_scene_text);
-        roomImage = (ImageView) findViewById(R.id.activity_main_scene_image);
-
+        ButterKnife.bind(this);
 
         moveNorth.setOnClickListener(new View.OnClickListener() {
             @Override
