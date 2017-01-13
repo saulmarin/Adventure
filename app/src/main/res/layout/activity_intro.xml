@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_intro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center"
+    android:background="#888"
+    tools:context="com.marin.saul.a02_adventure.IntroActivity">
+
+    <ImageView
+        android:id="@+id/activity_main_title"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:src="@drawable/main_title"/>
+
+    <TextView
+        android:id="@+id/activity_main_credits"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:gravity="center"
+        android:layout_below="@id/activity_main_title"
+        android:text="Aplicación creada por Saúl Marín\nTodos los derechos reservados (R)"/>
+
+    <Button
+        android:id="@+id/activity_main_play_button"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/activity_main_credits"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="PLAY"/>
+</RelativeLayout>
