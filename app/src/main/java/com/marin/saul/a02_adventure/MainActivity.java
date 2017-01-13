@@ -14,6 +14,8 @@ import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
 import com.marin.saul.a02_adventure.model.Room;
 
+import java.util.LinkedList;
+
 public class MainActivity extends AppCompatActivity {
     ImageButton helpButton;
     TextView roomDescription;
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         lookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                lookRoom();
             }
         });
         takeButton.setOnClickListener(new View.OnClickListener() {
@@ -162,8 +164,21 @@ public class MainActivity extends AppCompatActivity {
             moveSouth.setVisibility(View.INVISIBLE);
         }
     }
+
     public void showInventory() {
         String inventoryText = inventory.print();
         roomDescription.setText(inventoryText);
+    }
+
+    public void lookRoom(){
+        String roomText = "";
+        roomText = roomText + currentRoom.getDescription() + "\n";
+
+        LinkedList<Item> roomItems = currentRoom.getItems();
+        for (Item item: roomItems){
+            roomText = roomText + item.getName()+ "\n";
+        }
+
+        roomDescription.setText(roomText);
     }
 }
