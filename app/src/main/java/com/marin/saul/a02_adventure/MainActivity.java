@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.marin.saul.a02_adventure.model.Inventory;
-import com.marin.saul.a02_adventure.model.InventoryManager;
 import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
 import com.marin.saul.a02_adventure.model.Room;
@@ -84,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
         dropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InventoryManager.drop(currentRoom,inventory,"Mapa");
+                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra("KEY_INVENTORY", inventory);
+                startActivityForResult(i, 1);
             }
         });
         inventoryButton.setOnClickListener(new View.OnClickListener() {
