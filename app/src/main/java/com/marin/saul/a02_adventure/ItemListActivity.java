@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DropActivity extends AppCompatActivity {
+public class ItemListActivity extends AppCompatActivity {
 
     @BindView(R.id.activity_drop_item_list) ListView itemList;
 
@@ -53,7 +53,7 @@ public class DropActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View row, int position, long id) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, position);
+                returnIntent.putExtra(Constants.KEY_INTENT_ITEM_LIST_POSITION, position);
                 setResult(RESULT_OK, returnIntent);
                 finish();
             }

@@ -86,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
         takeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra(Constants.KEY_INTENT_TAKE_ITEM_FROM_ROOM, currentRoom);
+                Intent i = new Intent(MainActivity.this, ItemListActivity.class).putExtra(Constants.KEY_INTENT_TAKE_ITEM_FROM_ROOM, currentRoom);
                 startActivityForResult(i, 2);
             }
         });
         dropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra(Constants.KEY_INTENT_INVENTORY, inventory);
+                Intent i = new Intent(MainActivity.this, ItemListActivity.class).putExtra(Constants.KEY_INTENT_INVENTORY, inventory);
                 startActivityForResult(i, 1);
             }
         });
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1){
             if (resultCode == RESULT_OK){
-                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, -1);
+                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_ITEM_LIST_POSITION, -1);
 
                 Item item = inventory.getItem(itemPosition);
                 currentRoom.getItems().add(item);
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (requestCode == 2){
             if (resultCode == RESULT_OK){
-                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, -1);
+                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_ITEM_LIST_POSITION, -1);
 
                 Item item = currentRoom.getItems().get(itemPosition);
                 inventory.add(item);

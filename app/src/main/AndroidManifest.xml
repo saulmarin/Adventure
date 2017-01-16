@@ -17,8 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TakeActivity" />
-        <activity android:name=".DropActivity"></activity>
+        <activity android:name=".ItemListActivity"></activity>
     </application>
 
 </manifest>
