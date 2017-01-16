@@ -2,49 +2,49 @@ package com.marin.saul.a02_adventure;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.marin.saul.a02_adventure.model.Inventory;
-import com.marin.saul.a02_adventure.model.InventoryManager;
 import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
 import com.marin.saul.a02_adventure.model.Room;
+import com.marin.saul.a02_adventure.util.Constants;
+
+import java.util.LinkedList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton helpButton;
-    TextView roomDescription;
-    ImageView roomImage;
 
-    ImageButton moveNorth;
-    ImageButton moveEast;
-    ImageButton moveWest;
-    ImageButton moveSouth;
-    ImageButton lookButton;
-    ImageButton takeButton;
-    ImageButton dropButton;
-    ImageButton inventoryButton;
+    @BindView(R.id.activity_main_button_north) ImageButton moveNorth;
+    @BindView(R.id.activity_main_button_east) ImageButton moveEast;
+    @BindView(R.id.activity_main_button_west) ImageButton moveWest;
+    @BindView(R.id.activity_main_button_south) ImageButton moveSouth;
+    @BindView(R.id.activity_main_button_look) ImageButton lookButton;
+    @BindView(R.id.activity_main_button_take) ImageButton takeButton;
+    @BindView(R.id.activity_main_button_drop) ImageButton dropButton;
+    @BindView(R.id.activity_main_button_inventory) ImageButton inventoryButton;
+    @BindView(R.id.activity_main_button_help) ImageButton helpButton;
+    @BindView(R.id.activity_main_scene_text) TextView roomDescription;
+    @BindView(R.id.activity_main_scene_image) ImageView roomImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        moveNorth = (ImageButton) findViewById(R.id.activity_main_button_north);
-        moveEast = (ImageButton) findViewById(R.id.activity_main_button_east);
-        moveWest = (ImageButton) findViewById(R.id.activity_main_button_west);
-        moveSouth = (ImageButton) findViewById(R.id.activity_main_button_south);
-        lookButton = (ImageButton) findViewById(R.id.activity_main_button_look);
-        takeButton = (ImageButton) findViewById(R.id.activity_main_button_take);
-        dropButton = (ImageButton) findViewById(R.id.activity_main_button_drop);
-        inventoryButton = (ImageButton) findViewById(R.id.activity_main_button_inventory);
-        helpButton = (ImageButton) findViewById(R.id.activity_main_button_help);
-        roomDescription = (TextView) findViewById(R.id.activity_main_scene_text);
-        roomImage = (ImageView) findViewById(R.id.activity_main_scene_image);
-
+        ButterKnife.bind(this);
 
         moveNorth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,19 +77,21 @@ public class MainActivity extends AppCompatActivity {
         lookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                lookRoom();
             }
         });
         takeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InventoryManager.take(currentRoom,inventory,"Mapa");
+                Intent i = new Intent(MainActivity.this, TakeActivity.class);
+                startActivity(i);
             }
         });
         dropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InventoryManager.drop(currentRoom,inventory,"Mapa");
+                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra(Constants.KEY_INTENT_INVENTORY, inventory);
+                startActivityForResult(i, 1);
             }
         });
         inventoryButton.setOnClickListener(new View.OnClickListener() {
@@ -162,8 +164,42 @@ public class MainActivity extends AppCompatActivity {
             moveSouth.setVisibility(View.INVISIBLE);
         }
     }
+
     public void showInventory() {
         String inventoryText = inventory.print();
         roomDescription.setText(inventoryText);
+    }
+
+    public void lookRoom(){
+        String roomText = "";
+        roomText = roomText + currentRoom.getDescription() + "\n";
+
+        LinkedList<Item> roomItems = currentRoom.getItems();
+        if ( roomItems == null){
+            roomText = roomText + "No hay nada en la sala...";
+        }else {
+            for (Item item : roomItems) {
+                roomText = roomText + "<i>" + item.getName() + "</i><br>";
+            }
+        }
+        Spanned sp = Html.fromHtml(roomText.toString());
+        roomDescription.setText(sp);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, -1);
+
+                Item item = inventory.getItem(itemPosition);
+                currentRoom.getItems().add(item);
+                inventory.deleteItem(itemPosition);
+                Snackbar.make(roomDescription, getString(R.string.drop_item_text) + item.getName(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
+            }
+        }
     }
 }
