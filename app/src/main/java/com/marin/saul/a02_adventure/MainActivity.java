@@ -14,6 +14,7 @@ import com.marin.saul.a02_adventure.model.Inventory;
 import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
 import com.marin.saul.a02_adventure.model.Room;
+import com.marin.saul.a02_adventure.util.Constants;
 
 import java.util.LinkedList;
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         dropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra("KEY_INVENTORY", inventory);
+                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra(Constants.KEY_INTENT_INVENTORY, inventory);
                 startActivityForResult(i, 1);
             }
         });

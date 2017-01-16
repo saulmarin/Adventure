@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.marin.saul.a02_adventure.model.Inventory;
+import com.marin.saul.a02_adventure.util.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +25,7 @@ public class DropActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent i  = getIntent();
-        inventory = (Inventory) i.getSerializableExtra("KEY_INVENTORY");
+        inventory = (Inventory) i.getSerializableExtra(Constants.KEY_INTENT_INVENTORY);
 
 
     }
