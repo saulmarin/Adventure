@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         inventory.add(shield);
         inventory.add(rubberChiken);
 
-        MapGenerator.generate();
+        MapGenerator.generate(this);
         currentRoom = MapGenerator.initialRoom;
 
     }
