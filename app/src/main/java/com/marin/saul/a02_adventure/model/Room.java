@@ -6,6 +6,7 @@ import java.util.LinkedList;
 public class Room {
     private  String description;
     private String image;
+    private String imageUrl;
 
 
     private LinkedList<Item> items;
@@ -21,6 +22,14 @@ public class Room {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {
