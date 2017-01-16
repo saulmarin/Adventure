@@ -28,7 +28,7 @@ public class DropActivity extends AppCompatActivity {
         Intent i  = getIntent();
         inventory = (Inventory) i.getSerializableExtra(Constants.KEY_INTENT_INVENTORY);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, inventory.getItems());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, inventory.getItemNames());
         itemList.setAdapter(adapter);
     }
 }
