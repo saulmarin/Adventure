@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="room_desc1">[ROOM 1]Te encuentras en una habitacion vacia,que inpira poca seguridad...</string>
+    <string name="room_desc2">[ROOM 2]Ves una habitacion sombría,con un aire misterioso...</string>
+    <string name="room_desc3">[ROOM 3]Llegas a una habitacion bastante normal...o eso parece...</string>
+    <string name="room_desc4">[ROOM 4]habitacion con un letrero que pone 4</string>
+    <string name="room_img1">http://www.sopitas.com/wp-content/uploads/2016/05/nino-abandonado-bosque-e1464624950517.jpg</string>
+    <string name="room_img2">http://www.elmetropolitanodigital.com/wp-content/uploads/2016/02/zika.jpg</string>
+    <string name="room_img3">http://www.notagram.net/wp-content/uploads/2015/06/7-bosques.jpg</string>
+    <string name="room_img4">http://i.tvynovelas.com/dam/mx/Notas/16/09/2/bosque.jpg.imgo.jpg</string>
+</resources>
