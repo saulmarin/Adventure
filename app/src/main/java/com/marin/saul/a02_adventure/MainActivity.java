@@ -17,6 +17,7 @@ import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
 import com.marin.saul.a02_adventure.model.Room;
 import com.marin.saul.a02_adventure.util.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        Picasso.with(this).setIndicatorsEnabled(true);
+        Picasso.with(this).setLoggingEnabled(true);
 
         moveNorth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void repaintScene(){
         roomDescription.setText(currentRoom.getDescription());
-        String sceneImage = currentRoom.getImage();
-        int id = getResources().getIdentifier(sceneImage, "drawable", getPackageName());
-        roomImage.setImageResource(id);
+        Picasso.with(this).
+                load(currentRoom.getImageUrl()).
+                into(roomImage);
 
         if (currentRoom.getRoomNorth() != null){
             moveNorth.setVisibility(View.VISIBLE);
