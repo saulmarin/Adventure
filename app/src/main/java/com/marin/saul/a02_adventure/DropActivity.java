@@ -3,13 +3,10 @@ package com.marin.saul.a02_adventure;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
 import android.view.Window;
-=======
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
->>>>>>> feature/Drop_function
 import android.widget.ListView;
 
 import com.marin.saul.a02_adventure.model.Inventory;
