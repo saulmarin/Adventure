@@ -1,9 +1,12 @@
 package com.marin.saul.a02_adventure.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 
-public class Room {
+public class Room implements Serializable{
     private  String description;
     private String image;
     private String imageUrl;
@@ -81,5 +84,13 @@ public class Room {
 
     public void setRoomSouth(Room roomSouth) {
         this.roomSouth = roomSouth;
+    }
+
+    public List<String> getItemNames(){
+        List<String> names = new ArrayList<>();
+        for (Item item: items){
+            names.add(item.getName());
+        }
+        return names;
     }
 }

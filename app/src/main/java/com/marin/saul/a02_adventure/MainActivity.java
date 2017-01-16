@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
         takeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, TakeActivity.class);
-                startActivity(i);
+                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra(Constants.KEY_INTENT_TAKE_ITEM_FROM_ROOM, currentRoom);
+                startActivityForResult(i, 2);
             }
         });
         dropButton.setOnClickListener(new View.OnClickListener() {
@@ -200,6 +200,18 @@ public class MainActivity extends AppCompatActivity {
                 currentRoom.getItems().add(item);
                 inventory.deleteItem(itemPosition);
                 Snackbar.make(roomDescription, getString(R.string.drop_item_text) + item.getName(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
+            }
+        }
+        if (requestCode == 2){
+            if (resultCode == RESULT_OK){
+                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, -1);
+
+                Item item = currentRoom.getItems().get(itemPosition);
+                inventory.add(item);
+                currentRoom.getItems().remove(itemPosition);
+                Snackbar.make(roomDescription, "Coges " + item.getName(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .show();
             }
