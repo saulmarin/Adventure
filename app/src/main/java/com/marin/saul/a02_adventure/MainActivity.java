@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 Item item = inventory.getItem(itemPosition);
                 currentRoom.getItems().add(item);
                 inventory.deleteItem(itemPosition);
-                Snackbar.make(view, "Loading finished", Snackbar.LENGTH_LONG)
+                Snackbar.make(roomDescription, getString(R.string.drop_item_text) + item.getName(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .show();
             }
