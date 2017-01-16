@@ -2,6 +2,7 @@ package com.marin.saul.a02_adventure;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
@@ -180,6 +181,22 @@ public class MainActivity extends AppCompatActivity {
         }
         Spanned sp = Html.fromHtml(roomText.toString());
         roomDescription.setText(sp);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, -1);
+
+                Item item = inventory.getItem(itemPosition);
+                currentRoom.getItems().add(item);
+                inventory.deleteItem(itemPosition);
+                Snackbar.make(view, "Loading finished", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
+            }
+        }
     }
 }

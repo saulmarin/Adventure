@@ -38,4 +38,12 @@ public class Inventory implements Serializable{
         }
         return names;
     }
+
+    public Item getItem(int itemPosition) {
+        return inventory.get(itemPosition);
+    }
+
+    public void deleteItem(int itemPosition) {
+        inventory.remove(itemPosition);
+    }
 }

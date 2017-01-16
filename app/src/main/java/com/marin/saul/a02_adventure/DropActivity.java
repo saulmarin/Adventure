@@ -34,8 +34,11 @@ public class DropActivity extends AppCompatActivity {
         itemList.setAdapter(adapter);
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            public void onItemClick(AdapterView<?> adapterView, View row, int position, long id) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, position);
+                setResult(RESULT_OK, returnIntent);
+                finish();
             }
         });
     }
