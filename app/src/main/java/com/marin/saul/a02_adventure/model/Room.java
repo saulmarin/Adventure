@@ -32,6 +32,9 @@ public class Room {
     }
 
     public LinkedList<Item> getItems() {
+        if (items == null){
+            items = new LinkedList<>();
+        }
         return items;
     }
 

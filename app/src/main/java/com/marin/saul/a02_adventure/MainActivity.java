@@ -2,6 +2,7 @@ package com.marin.saul.a02_adventure;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
@@ -15,6 +16,7 @@ import com.marin.saul.a02_adventure.model.Inventory;
 import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
 import com.marin.saul.a02_adventure.model.Room;
+import com.marin.saul.a02_adventure.util.Constants;
 
 import java.util.LinkedList;
 
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         dropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra("KEY_INVENTORY", inventory);
+                Intent i = new Intent(MainActivity.this, DropActivity.class).putExtra(Constants.KEY_INTENT_INVENTORY, inventory);
                 startActivityForResult(i, 1);
             }
         });
@@ -182,6 +184,22 @@ public class MainActivity extends AppCompatActivity {
         }
         Spanned sp = Html.fromHtml(roomText.toString());
         roomDescription.setText(sp);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                int itemPosition = data.getIntExtra(Constants.KEY_INTENT_DROP_ITEM_POSITION, -1);
+
+                Item item = inventory.getItem(itemPosition);
+                currentRoom.getItems().add(item);
+                inventory.deleteItem(itemPosition);
+                Snackbar.make(roomDescription, getString(R.string.drop_item_text) + item.getName(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
+            }
+        }
     }
 }
