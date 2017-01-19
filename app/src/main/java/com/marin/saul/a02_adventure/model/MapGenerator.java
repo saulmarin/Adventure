@@ -45,6 +45,7 @@ public class MapGenerator {
         room3.setImageUrl(context.getString(R.string.room_img3));
         room4.setImageUrl(context.getString(R.string.room_img4));
 
+        room2.setMonster(new Monster("Un chalao", "Sin tele ni cerveza Homer pierde la cabeza.","http://statics.viralizalo.com/virs/2016/01/VIR_99225_8407_que_tan_loco_estas.jpg?cb=98918"));
 
         initialRoom = room1;
 

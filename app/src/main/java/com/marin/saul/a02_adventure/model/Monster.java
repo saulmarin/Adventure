@@ -10,6 +10,11 @@ public class Monster {
     private String description;
     private String imageUrl;
 
+    public Monster(String name, String description, String imageUrl) {
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
 
     public String getName() {
         return name;
