@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.marin.saul.a02_adventure.model.Inventory;
 import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
+import com.marin.saul.a02_adventure.model.Player;
 import com.marin.saul.a02_adventure.model.Room;
 import com.marin.saul.a02_adventure.util.Constants;
 import com.marin.saul.a02_adventure.util.JetPlayerUtil;
@@ -120,7 +121,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     Inventory inventory = new Inventory();
+    Player player = new Player();
     Room currentRoom;
+
+
     private void initGame(){
 
         Item sword = new Item("Espada de madera","Una espada que no sirve para mucho.");
@@ -168,6 +172,14 @@ public class MainActivity extends AppCompatActivity {
         }else{
             //no room
             moveSouth.setVisibility(View.INVISIBLE);
+        }
+
+        //check for monster
+        if ( currentRoom.getMonster() != null){
+            Intent i = new Intent(MainActivity.this, FightMonsterActivity.class);
+            i.putExtra("monster", currentRoom.getMonster());
+            i.putExtra("player", player);
+            startActivity(i);
         }
     }
 
