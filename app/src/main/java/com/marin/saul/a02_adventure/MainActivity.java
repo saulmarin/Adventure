@@ -19,6 +19,7 @@ import com.marin.saul.a02_adventure.model.Item;
 import com.marin.saul.a02_adventure.model.MapGenerator;
 import com.marin.saul.a02_adventure.model.Room;
 import com.marin.saul.a02_adventure.util.Constants;
+import com.marin.saul.a02_adventure.util.JetPlayerUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
@@ -113,16 +114,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        JetPlayer jetPlayer = JetPlayer.getJetPlayer();
-        AssetFileDescriptor afd = this.getResources().openRawResourceFd(R.raw.jet);
-        jetPlayer.loadJetFile(afd);
-        byte segmentId = 0;
-// queue segment 0, repeat once, use General MIDI
-        jetPlayer.queueJetSegment(0, -1, 0, 0, 0, (byte) 0);
-        jetPlayer.play();
-
         initGame();
         repaintScene();
+        JetPlayerUtil.play(this, R.raw.jet);
     }
 
     Inventory inventory = new Inventory();
