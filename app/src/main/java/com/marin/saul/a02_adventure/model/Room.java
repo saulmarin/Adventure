@@ -7,9 +7,10 @@ import java.util.List;
 
 
 public class Room implements Serializable{
-    private  String description;
+    private String description;
     private String image;
     private String imageUrl;
+    private Monster monster;
 
 
     private LinkedList<Item> items;
@@ -92,5 +93,13 @@ public class Room implements Serializable{
             names.add(item.getName());
         }
         return names;
+    }
+
+    public Monster getMonster() {
+        return monster;
+    }
+
+    public void setMonster(Monster monster) {
+        this.monster = monster;
     }
 }
