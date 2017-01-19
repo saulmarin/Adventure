@@ -34,6 +34,7 @@ public class FightMonsterActivity extends AppCompatActivity {
         monsterName.setText(monster.getName());
         monsterDescription.setText(monster.getDescription());
         Picasso.with(this).load(monster.getImageUrl()).into(monsterImage);
+        monsterLife.setText("" + monster.getHealthPoints());
 
 
 
