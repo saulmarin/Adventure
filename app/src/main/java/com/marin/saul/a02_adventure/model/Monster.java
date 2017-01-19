@@ -1,10 +1,12 @@
 package com.marin.saul.a02_adventure.model;
 
+import java.io.Serializable;
+
 /**
  * Created by g7-1105ss on 19/01/2017.
  */
 
-public class Monster {
+public class Monster implements Serializable{
 
     private String name;
     private String description;

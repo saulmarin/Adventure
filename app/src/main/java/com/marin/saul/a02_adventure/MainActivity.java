@@ -169,6 +169,13 @@ public class MainActivity extends AppCompatActivity {
             //no room
             moveSouth.setVisibility(View.INVISIBLE);
         }
+
+        //check for monster
+        if ( currentRoom.getMonster() != null){
+            Intent i = new Intent(MainActivity.this, FightMonsterActivity.class);
+            i.putExtra("monster", currentRoom.getMonster());
+            startActivity(i);
+        }
     }
 
     public void showInventory() {
